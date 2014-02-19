@@ -8,8 +8,7 @@ Dummy::Application.configure do
   config.cache_classes = true
   config.assets.enabled = false if Rails::VERSION::MINOR >= 1
 
-  # Log error messages when you accidentally call methods on nil.
-  config.whiny_nils = true
+  config.eager_load = false
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
