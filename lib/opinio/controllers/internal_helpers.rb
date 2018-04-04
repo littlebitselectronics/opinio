@@ -8,7 +8,7 @@ module Opinio
       end
 
       def resource
-        @resource ||= custom_resource_identifier(params) || resource_by_params 
+        @resource ||= custom_resource_identifier(params) || resource_by_params
       end
 
       def resource_by_params
@@ -30,6 +30,7 @@ module Opinio
       end
 
       def set_flash(name, message)
+        name = name.to_s
         flash[name] = message if Opinio.set_flash
       end
     end
