@@ -8,19 +8,14 @@ module Opinio
     end
 
     module ClassMethods
-    
+
       # Adds the Opinio functionallity to the model
       # You can pass a hash of options to customize the Opinio model
       def opinio(*args)
         return if self.included_modules.include?(Opinio::OpinioModel::Validations)
         options = args.extract_options!
 
-        if Opinio.use_title
-          attr_accessible :title 
-        end
-        attr_accessible :body
-
-        belongs_to :commentable, :polymorphic => true, :counter_cache => options.fetch(:counter_cache, false) 
+        belongs_to :commentable, :polymorphic => true, :counter_cache => options.fetch(:counter_cache, false)
         belongs_to :owner, :class_name => options.fetch(:owner_class_name, Opinio.owner_class_name)
 
         scope :owned_by, lambda {|owner| where('owner_id = ?', owner.id) }
@@ -49,7 +44,7 @@ module Opinio
       private
 
       def strip_html_tags
-        self.body = strip_tags(self.body)
+        self.update_column(strip_tags(self.body))
       end
     end
 
