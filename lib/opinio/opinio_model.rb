@@ -44,7 +44,7 @@ module Opinio
       private
 
       def strip_html_tags
-        self.update_column(strip_tags(self.body))
+        self.body = strip_tags(self.body)
       end
     end
 
