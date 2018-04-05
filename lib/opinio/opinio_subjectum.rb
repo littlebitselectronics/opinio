@@ -13,7 +13,8 @@ module Opinio
         default_options = { :class_name => Opinio.model_name,
                             :as => :commentable,
                             :dependent => :destroy }
-
+        # :order is an deprecated option for has_many in rails 5
+        options.delete(:order)
         has_many :comments, -> { order("created_at #{Opinio.sort_order}") }, default_options.merge(options)
 
       end
