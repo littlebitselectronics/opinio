@@ -4,7 +4,7 @@ module Opinio
       extend ActiveSupport::Concern
 
       included do
-        before_filter :check_reply, :only => [:create]
+        before_action :check_reply, :only => [:create]
       end
 
       def reply
